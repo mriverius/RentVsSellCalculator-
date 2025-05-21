@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rent vs Sell Calculator</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <h1 class="title">Rent vs. Sell Calculator</h1>
+    <main class="main-container">
+      <!-- start of container of graphic and data -->
+      <div class="data-container">
+        <section class="graphic-container">
+          <h2>
+            If you RENT OUT your property, you'll have $253,134 more wealth in
+            10 years
+          </h2>
+          <div class="graphic">
+            <h1>the graphic will apppear here!</h1>
+          </div>
+          <div class="div-rent-sell">
+            <div class="rent-sell-item">
+              <div class="item-color rent-color"></div>
+              <span>Rent</span>
+            </div>
+            <div class="rent-sell-item">
+              <div class="item-color sell-color"></div>
+              <span>Sell</span>
+            </div>
+          </div>
+          <section class="slider-year">
+            <label for="yearsSlider"
+              >Move the slider to see the change per year</label
+            >
+            <input type="range" id="yearsSlider" min="1" max="10" value="5" />
+          </section>
+          <section class="result-summary">
+            <div class="year result-summary-item">YEAR <strong>5</strong></div>
+            <div class="rent-out result-summary-item">
+              RENT OUT <strong>$315,360</strong>
+            </div>
+            <div class="sell-now result-summary-item">
+              SELL NOW <strong>$264,489</strong>
+            </div>
+            <div class="difference result-summary-item">
+              DIFFERENCE IN WEALTH <strong>$50,871</strong>
+            </div>
+          </section>
+        </section>
+
+        <section class="data-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Rental Income</th>
+                <th>Mortgage</th>
+                <th>Other Costs</th>
+                <th>Net Cash Flow</th>
+                <th>House Value</th>
+                <th>House Equity</th>
+                <th>Wealth (Rent)</th>
+                <th>Wealth (Sell)</th>
+                <th>Difference in Wealth</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Example Row -->
+              <tr>
+                <td>1</td>
+                <td>$27,600</td>
+                <td>-$16,105</td>
+                <td>-$11,148</td>
+                <td>-$185</td>
+                <td>$450,000</td>
+                <td>$225,162</td>
+                <td>$221,977</td>
+                <td>$209,500</td>
+                <td>$12,477</td>
+              </tr>
+              <!-- Repeat rows for each year -->
+            </tbody>
+          </table>
+        </section>
+
+        <section class="disclaimer">
+          <p>
+            <span>Disclaimer: </span>This data is provided for informational
+            purposes only and should not be relied upon as a guarantee of any
+            future result. Consult a qualified professional before making any
+            financial decisions. A positive difference in projected wealth does
+            not necessarily indicate positive monthly cash flow. It reflects
+            long-term equity growth, appreciation, and other factors that may
+            not translate into immediate income or liquidity.
+          </p>
+        </section>
+
+        <details class="details-table">
+          <summary>How to read this table</summary>
+          <p>Rental Income: Expected rental income after vacancy adjustments</p>
+          <p>
+            Mortgage Expense: Annual mortgage payments (principal + interest)
+          </p>
+          <p>
+            Other Costs: All ongoing expenses (property management, maintenance,
+            taxes, CapEx)
+          </p>
+          <p>Net Cash Flow: Annual profit or loss from rental operations</p>
+          <p>House Value: Estimated property value with appreciation</p>
+          <p>House Equity: Property value minus remaining mortgage</p>
+          <p>
+            Wealth (Rent Out): Total wealth if renting until this year then
+            selling
+          </p>
+          <p>
+            Wealth (Sell Now): Potential wealth if selling now and investing
+            proceeds
+          </p>
+          <p>
+            Difference in Wealth: How much better (or worse) renting out
+            performs
+          </p>
+          <p>
+            Note: In the final year (10), selling costs are applied to the "Rent
+            Out" scenario, assuming you would sell the property at that point.
+          </p>
+        </details>
+      </div>
+      <!-- start of aside for inputs -->
+      <div class="inputs-container">
+        <form class="inputs">
+          <button id="exportBtn">Export as PDF</button>
+
+          <label>Home Value </label>
+          <input type="number" value="450000" />
+
+          <label>Price Paid </label>
+          <input type="number" value="300000" />
+
+          <label>Original Mortgage </label>
+          <input type="number" value="250000" />
+
+          <label>Mortgage Balance</label>
+          <input type="number" value="200000" />
+
+          <label>Interest Rate (%) </label>
+          <input type="number" step="0.01" value="5.00" />
+
+          <label>Mortgage Payment</label>
+          <input type="number" value="1342.05" />
+
+          <label>Property Taxes (%)</label>
+          <input type="number" step="0.01" value="1.60" />
+
+          <label>Homeowners Insurance ($/mo)</label>
+          <input type="number" value="115" />
+
+          <label>Monthly Rent</label>
+          <input type="number" value="2500" />
+
+          <label>Appreciation Rate (%)</label>
+          <input type="number" step="0.01" value="3.50" />
+
+          <label>Years to Hold</label>
+          <input type="range" min="1" max="10" value="10" />
+
+          <div>
+            <label> Primary Residence?</label>
+            <input type="checkbox" checked />
+          </div>
+        </form>
+
+        <fieldset>
+          <legend>Advanced Inputs</legend>
+        </fieldset>
+      </div>
+    </main>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
