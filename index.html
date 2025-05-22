@@ -98,28 +98,41 @@
 
         <details class="details-table">
           <summary>How to read this table</summary>
-          <p>Rental Income: Expected rental income after vacancy adjustments</p>
           <p>
-            Mortgage Expense: Annual mortgage payments (principal + interest)
+            <strong>Rental Income:</strong> Expected rental income after vacancy
+            adjustments
           </p>
           <p>
-            Other Costs: All ongoing expenses (property management, maintenance,
-            taxes, CapEx)
-          </p>
-          <p>Net Cash Flow: Annual profit or loss from rental operations</p>
-          <p>House Value: Estimated property value with appreciation</p>
-          <p>House Equity: Property value minus remaining mortgage</p>
-          <p>
-            Wealth (Rent Out): Total wealth if renting until this year then
-            selling
+            <strong>Mortgage Expense:</strong> Annual mortgage payments
+            (principal + interest)
           </p>
           <p>
-            Wealth (Sell Now): Potential wealth if selling now and investing
-            proceeds
+            <strong>Other Costs:</strong> All ongoing expenses (property
+            management, maintenance, taxes, CapEx)
           </p>
           <p>
-            Difference in Wealth: How much better (or worse) renting out
-            performs
+            <strong>Net Cash Flow:</strong> Annual profit or loss from rental
+            operations
+          </p>
+          <p>
+            <strong>House Value:</strong> Estimated property value with
+            appreciation
+          </p>
+          <p>
+            <strong>House Equity:</strong> Property value minus remaining
+            mortgage
+          </p>
+          <p>
+            <strong>Wealth (Rent Out):</strong> Total wealth if renting until
+            this year then selling
+          </p>
+          <p>
+            <strong>Wealth (Sell Now):</strong> Potential wealth if selling now
+            and investing proceeds
+          </p>
+          <p>
+            <strong>Difference in Wealth:</strong> How much better (or worse)
+            renting out performs
           </p>
           <p>
             Note: In the final year (10), selling costs are applied to the "Rent
@@ -127,6 +140,8 @@
           </p>
         </details>
       </div>
+
+      <!-- start of aside for inputs -->
       <!-- start of aside for inputs -->
       <div class="inputs-container">
         <form class="inputs">
@@ -145,13 +160,13 @@
           <input type="number" value="200000" />
 
           <label>Interest Rate (%) </label>
-          <input type="number" step="0.01" value="5.00" />
+          <input type="number" value="5.00" />
 
           <label>Mortgage Payment</label>
           <input type="number" value="1342.05" />
 
           <label>Property Taxes (%)</label>
-          <input type="number" step="0.01" value="1.60" />
+          <input type="number" value="1.60" />
 
           <label>Homeowners Insurance ($/mo)</label>
           <input type="number" value="115" />
@@ -160,10 +175,11 @@
           <input type="number" value="2500" />
 
           <label>Appreciation Rate (%)</label>
-          <input type="number" step="0.01" value="3.50" />
+          <input type="number" value="3.50" />
 
           <label>Years to Hold</label>
-          <input type="range" min="1" max="10" value="10" />
+          <input type="range" min="1" max="20" value="20" />
+          <label class="range-number">20</label>
 
           <div>
             <label> Primary Residence?</label>
@@ -171,9 +187,125 @@
           </div>
         </form>
 
-        <fieldset>
-          <legend>Advanced Inputs</legend>
-        </fieldset>
+        <!-- section for advace inputs -->
+        <!-- section for advace inputs -->
+
+        <details class="advance-details">
+          <summary>Advance Inputs</summary>
+          <div class="advace-inputs">
+            <!-- make ready costs -->
+            <div class="advace-inputs-element">
+              <label>Make-Ready Costs</label>
+              <input type="number" value="5000" />
+            </div>
+
+            <!--Annual Maintenance Costs -->
+            <div class="advace-inputs-element">
+              <label>Annual Maintenance Costs</label>
+              <input type="text" value="5" readonly />
+              <input
+                type="range"
+                min="1"
+                max="5"
+                value="2.2"
+                id="maintenanceCosts"
+              />
+              <label class="range-number">5</label>
+            </div>
+
+            <!--Refurbishing Costs to Sell Now-->
+            <div class="advace-inputs-element">
+              <label>Refurbishing Costs to Sell Now</label>
+              <input type="number" value="5000" />
+            </div>
+
+            <!--Mortgage Term-->
+            <div class="advace-inputs-element">
+              <label>Mortgage Term</label>
+              <div class="div-btn-mortgageTerm">
+                <button class="btn-mortgageTerm">30 years(360)</button>
+                <button class="btn-mortgageTerm">15 years(180)</button>
+                <button class="btn-mortgageTerm">Custom</button>
+              </div>
+
+              <input type="number" value="5000" />
+            </div>
+
+            <!--Property Management Fee-->
+            <div class="advace-inputs-element">
+              <label>Property Management Fee</label>
+              <input type="number" value="5000" />
+            </div>
+
+            <!--Annual Vacancy Rate -->
+            <div class="advace-inputs-element">
+              <label>Annual Vacancy Rate</label>
+              <input type="text" value="5" />
+              <input type="range" min="1" max="25" value="2.2" />
+              <label class="range-number">5%</label>
+            </div>
+
+            <!--Capital Expenditures (CapEx) -->
+            <div class="advace-inputs-element">
+              <label>Capital Expenditures (CapEx)</label>
+              <input type="number" value="5000" />
+              <input type="range" min="1" max="5" value="2.2" />
+              <label class="range-number">8%</label>
+              <div>
+                <input type="checkbox" checked />
+                <label> Include CapEx in calculations</label>
+              </div>
+            </div>
+
+            <!--Annual Rent Change -->
+            <div class="advace-inputs-element">
+              <label>Annual Rent Change</label>
+              <input type="number" value="5000" />
+              <input type="range" min="1" max="5" value="2.2" />
+              <label class="range-number">8%</label>
+            </div>
+
+            <!--Realtor Commission -->
+            <div class="advace-inputs-element">
+              <label>Realtor Commission</label>
+              <input type="number" value="5000" />
+              <input type="range" min="1" max="10" value="2.5" />
+              <label class="range-number">8%</label>
+            </div>
+
+            <!--Closing Costs -->
+            <div class="advace-inputs-element">
+              <label>Closing Costs</label>
+              <input type="number" value="5000" />
+              <input type="range" min="1" max="5" value="2.2" />
+              <label class="range-number">8%</label>
+            </div>
+
+            <!--Income Tax Rate -->
+            <div class="advace-inputs-element">
+              <label>Income Tax Rate</label>
+              <input type="number" value="5000" />
+              <input type="range" min="1" max="5" value="2.2" />
+              <label class="range-number">8%</label>
+            </div>
+
+            <!--Capital Gains Tax Rate -->
+            <div class="advace-inputs-element">
+              <label>Capital Gains Tax Rate</label>
+              <input type="number" value="5000" />
+              <input type="range" min="1" max="5" value="2.2" />
+              <label class="range-number">8%</label>
+            </div>
+
+            <!--After-Tax Reinvestment Rate -->
+            <div class="advace-inputs-element">
+              <label>After-Tax Reinvestment Rate</label>
+              <input type="number" value="5000" />
+              <input type="range" min="1" max="20" value="2.2" />
+              <label class="range-number">8%</label>
+            </div>
+          </div>
+        </details>
       </div>
     </main>
 
