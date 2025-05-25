@@ -10,15 +10,31 @@
     <h1 class="title">Rent vs. Sell Calculator</h1>
     <main class="main-container">
       <!-- start of container of graphic and data -->
+      <!-- start of container of graphic and data -->
       <div class="data-container">
         <section class="graphic-container">
           <h2>
             If you RENT OUT your property, you'll have $253,134 more wealth in
             10 years
           </h2>
-          <div class="graphic">
-            <h1>the graphic will apppear here!</h1>
+          <!-- Chart/graphic -->
+          <!-- Chart/graphic -->
+          <div class="chart-container">
+            <svg id="chart" width="600" height="400">
+              <!-- Grid lines will be added by JavaScript -->
+              <g id="gridLines"></g>
+              <!-- Chart lines will be added by JavaScript -->
+              <g id="chartLines"></g>
+              <!-- Data points will be added by JavaScript -->
+              <g id="dataPoints"></g>
+              <!-- Axes will be added by JavaScript -->
+              <g id="axes"></g>
+              <!-- Labels will be added by JavaScript -->
+              <g id="labels"></g>
+            </svg>
           </div>
+          <!-- rent sell legend -->
+          <!-- rent sell legend -->
           <div class="div-rent-sell">
             <div class="rent-sell-item">
               <div class="item-color rent-color"></div>
@@ -29,11 +45,14 @@
               <span>Sell</span>
             </div>
           </div>
+          <!-- sleader years -->
+          <!-- sleader years -->
           <section class="slider-year">
             <label for="yearsSlider"
               >Move the slider to see the change per year</label
             >
             <input type="range" id="yearsSlider" min="1" max="10" value="5" />
+            <label class="range-number">20</label>
           </section>
           <section class="result-summary">
             <div class="year result-summary-item">YEAR <strong>5</strong></div>
@@ -54,15 +73,33 @@
             <thead>
               <tr>
                 <th>Year</th>
-                <th>Rental Income</th>
+                <th>
+                  Rental <br />
+                  Income
+                </th>
                 <th>Mortgage</th>
-                <th>Other Costs</th>
-                <th>Net Cash Flow</th>
-                <th>House Value</th>
-                <th>House Equity</th>
-                <th>Wealth (Rent)</th>
-                <th>Wealth (Sell)</th>
-                <th>Difference in Wealth</th>
+                <th>Other <br />Costs</th>
+                <th>Net <br />Cash Flow</th>
+                <th>
+                  House <br />
+                  Value
+                </th>
+                <th>
+                  House <br />
+                  Equity
+                </th>
+                <th>
+                  Wealth <br />
+                  (Rent)
+                </th>
+                <th>
+                  Wealth <br />
+                  (Sell)
+                </th>
+                <th>
+                  Difference <br />
+                  in Wealth
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -309,6 +346,6 @@
       </div>
     </main>
 
-    <script src="js/main.js"></script>
+    <script src="js/chart.js"></script>
   </body>
 </html>
