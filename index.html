@@ -185,7 +185,7 @@
           <button id="exportBtn">Export as PDF</button>
 
           <label>Home Value </label>
-          <input type="number" value="450000" />
+          <input type="number" value="0" />
 
           <label>Price Paid </label>
           <input type="number" value="300000" />
@@ -215,8 +215,8 @@
           <input type="number" value="3.50" />
 
           <label>Years to Hold</label>
-          <input type="range" min="1" max="20" value="20" />
-          <label class="range-number">20</label>
+          <input type="range" min="1" max="20" value="10" />
+          <label class="range-number">10</label>
 
           <div>
             <label> Primary Residence?</label>
@@ -233,7 +233,7 @@
             <!-- make ready costs -->
             <div class="advace-inputs-element">
               <label>Make-Ready Costs</label>
-              <input type="number" value="5000" />
+              <input type="number" value="3000" />
             </div>
 
             <!--Annual Maintenance Costs -->
@@ -242,9 +242,9 @@
               <input type="text" value="5" readonly />
               <input
                 type="range"
-                min="1"
+                min="0"
                 max="5"
-                value="2.2"
+                value="1"
                 id="maintenanceCosts"
               />
               <label class="range-number">5</label>
@@ -253,7 +253,7 @@
             <!--Refurbishing Costs to Sell Now-->
             <div class="advace-inputs-element">
               <label>Refurbishing Costs to Sell Now</label>
-              <input type="number" value="5000" />
+              <input type="number" value="0" />
             </div>
 
             <!--Mortgage Term-->
@@ -263,31 +263,30 @@
                 <button class="btn-mortgageTerm">30 years(360)</button>
                 <button class="btn-mortgageTerm">15 years(180)</button>
                 <button class="btn-mortgageTerm">Custom</button>
+                <input type="number" value="0" hidden="true " />
               </div>
-
-              <input type="number" value="5000" />
             </div>
 
             <!--Property Management Fee-->
             <div class="advace-inputs-element">
               <label>Property Management Fee</label>
-              <input type="number" value="5000" />
+              <div><input type="number" value="137" /> <button>%</button></div>
             </div>
 
             <!--Annual Vacancy Rate -->
             <div class="advace-inputs-element">
               <label>Annual Vacancy Rate</label>
-              <input type="text" value="5" />
-              <input type="range" min="1" max="25" value="2.2" />
-              <label class="range-number">5%</label>
+              <input type="text" value="8" />
+              <input type="range" min="0" max="25" value="2.2" />
+              <label class="range-number">8%</label>
             </div>
 
             <!--Capital Expenditures (CapEx) -->
             <div class="advace-inputs-element">
               <label>Capital Expenditures (CapEx)</label>
-              <input type="number" value="5000" />
-              <input type="range" min="1" max="5" value="2.2" />
-              <label class="range-number">8%</label>
+              <input type="number" value="5.00" />
+              <input type="range" min="0" max="15" value="2.2" />
+              <label class="range-number">5%</label>
               <div>
                 <input type="checkbox" checked />
                 <label> Include CapEx in calculations</label>
@@ -297,49 +296,49 @@
             <!--Annual Rent Change -->
             <div class="advace-inputs-element">
               <label>Annual Rent Change</label>
-              <input type="number" value="5000" />
-              <input type="range" min="1" max="5" value="2.2" />
-              <label class="range-number">8%</label>
+              <input type="number" value="3.00" />
+              <input type="range" min="-5" max="10" value="3" />
+              <label class="range-number">3%</label>
             </div>
 
             <!--Realtor Commission -->
             <div class="advace-inputs-element">
               <label>Realtor Commission</label>
-              <input type="number" value="5000" />
-              <input type="range" min="1" max="10" value="2.5" />
-              <label class="range-number">8%</label>
+              <input type="number" value="6.00" />
+              <input type="range" min="0" max="10" value="6" />
+              <label class="range-number">6%</label>
             </div>
 
             <!--Closing Costs -->
             <div class="advace-inputs-element">
               <label>Closing Costs</label>
-              <input type="number" value="5000" />
-              <input type="range" min="1" max="5" value="2.2" />
-              <label class="range-number">8%</label>
+              <input type="number" value="3.00" />
+              <input type="range" min="0" max="10" value="3" />
+              <label class="range-number">3%</label>
             </div>
 
             <!--Income Tax Rate -->
             <div class="advace-inputs-element">
               <label>Income Tax Rate</label>
-              <input type="number" value="5000" />
-              <input type="range" min="1" max="5" value="2.2" />
-              <label class="range-number">8%</label>
+              <input type="number" value="10.00" />
+              <input type="range" min="0" max="50" value="10.00" />
+              <label class="range-number">10%</label>
             </div>
 
             <!--Capital Gains Tax Rate -->
             <div class="advace-inputs-element">
               <label>Capital Gains Tax Rate</label>
-              <input type="number" value="5000" />
-              <input type="range" min="1" max="5" value="2.2" />
-              <label class="range-number">8%</label>
+              <input type="number" value="15.00" />
+              <input type="range" min="0" max="40" value="15" />
+              <label class="range-number">15%</label>
             </div>
 
             <!--After-Tax Reinvestment Rate -->
             <div class="advace-inputs-element">
               <label>After-Tax Reinvestment Rate</label>
-              <input type="number" value="5000" />
-              <input type="range" min="1" max="20" value="2.2" />
-              <label class="range-number">8%</label>
+              <input type="number" value="6.00" />
+              <input type="range" min="0" max="20" value="6" />
+              <label class="range-number">6%</label>
             </div>
           </div>
         </details>
