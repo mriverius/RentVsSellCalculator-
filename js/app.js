@@ -2,7 +2,12 @@
 
 //  UI inputs
 //  UI inputs
+const formInputs = document.getElementById("formInputs");
 const yearsSliderRange = document.getElementById("yearsSliderRange");
+const years_graphic_results = document.getElementById("years_graphic_results");
+const summary_rent_out = document.getElementById("summary_rent_out");
+const summary_sell_out = document.getElementById("summary_sell_out");
+const summary_dif_wealth = document.getElementById("summary_dif_wealth");
 const yearsSliderLabel = document.getElementById("yearsSliderLabel");
 const btnExportPDF = document.getElementById("exportBtn");
 const homeValueInput = document.getElementById("homeValueInput");
@@ -134,9 +139,15 @@ const AfterTaxReinvestmentRateLabel = document.getElementById(
 // To diplay value of range in inputs
 // To diplay value of range in inputs
 
+formInputs.addEventListener("submit", function (e) {
+  e.preventDefault();
+});
+
 yearsSliderRange.addEventListener("input", () => {
   const value = yearsSliderRange.value;
   yearsSliderLabel.textContent = value;
+  console.log("yes");
+  years_graphic_results.textContent = value;
 });
 
 yearsToHoldRange.addEventListener("input", () => {
@@ -231,14 +242,6 @@ btnExportPDF.addEventListener("click", function () {
     // Reset button
     this.textContent = "Export as PDF";
     this.disabled = false;
-  }
-});
-
-// Optional: Add keyboard shortcut support
-document.addEventListener("keydown", function (e) {
-  if (e.ctrlKey && e.key === "p") {
-    e.preventDefault();
-    document.getElementById("exportBtn").click();
   }
 });
 
@@ -574,3 +577,64 @@ const inputs = {
 
 // Run the simulation and show the table
 simulate(inputs);
+
+function populateTable(inputs) {
+  // Call your simulate function to get the data
+  const results = simulate(inputs);
+
+  // Get the table body element
+  const tbody = document.querySelector("table tbody");
+
+  // Clear existing rows (except example row if you want to keep it)
+  tbody.innerHTML = "";
+
+  // Populate the table with results
+  results.forEach((row) => {
+    const tr = document.createElement("tr");
+
+    tr.innerHTML = `
+      <td>${row.Year}</td>
+      <td>${row["Rental Income"]}</td>
+      <td>${row.Mortgage}</td>
+      <td>${row["Other Costs"]}</td>
+      <td>${row["Net Cash Flow"]}</td>
+      <td>${row["House Value"]}</td>
+      <td>${row["House Equity"]}</td>
+      <td>${row["Wealth (Rent)"]}</td>
+      <td>${row["Wealth (Sell)"]}</td>
+      <td>${row.Difference}</td>
+    `;
+
+    tbody.appendChild(tr);
+  });
+}
+
+// Example usage:
+// Assuming you have an inputs object with all required properties
+const inputs2 = {
+  // Your input values here
+  yearsToHold: 10,
+  mortgageBalance: 224838,
+  makeReadyCost: 5000,
+  monthlyPayment: 1342,
+  homeValue: 450000,
+  // ... all other required properties
+};
+
+// Call the function to populate the table
+populateTable(inputs2);
+
+// Helper function to get inputs from form (example)
+function getInputsFromForm() {
+  return {
+    yearsToHold: parseInt(document.getElementById("years").value),
+    mortgageBalance: parseFloat(document.getElementById("mortgage").value),
+    makeReadyCost: parseFloat(document.getElementById("makeReady").value),
+    // ... get all other form values
+  };
+}
+
+//
+//
+//
+//

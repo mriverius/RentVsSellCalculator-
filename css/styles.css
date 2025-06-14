@@ -124,6 +124,15 @@ body {
   outline: none;
 }
 
+input[type="range"] {
+  width: 100%;
+  box-sizing: border-box;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .inputs label {
   margin-top: 12px;
   margin-bottom: 4px;
@@ -148,15 +157,31 @@ body {
   height: 25px;
 }
 
-/* .details-table summary::after {
-  content: "▼";
-  font-size: 12px;
-  color: #777;
+.input-dollar-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  /* No max-width - let it be fully responsive */
+}
+.input-dollar-wrapper .dollar-prefix {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-weight: bold;
+  pointer-events: none;
 }
 
-.details-table[open] summary::after {
-  content: "▲";
-} */
+.input-dollar-wrapper .advace-dollar-input {
+  width: 100%;
+  padding: 14px 14px 14px 30px; /* extra left padding for $ */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+}
 
 .advace-inputs {
   display: flex;
@@ -174,6 +199,10 @@ body {
 .advace-inputs input[type="range"] {
   width: 100%;
   box-sizing: border-box;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .advace-inputs-element {
@@ -202,6 +231,34 @@ body {
   margin-bottom: 10px;
 }
 
+.divPropertyManagement {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px; /* Adds visual separation */
+}
+
+.divPropertyManagement input {
+  width: 100%;
+  max-width: 200px;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+}
+
+.divPropertyManagement button {
+  padding: 14px 32px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  color: #111827;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* styles for graphic section */
 /* styles for graphic section */
 /* styles for graphic section */
 
