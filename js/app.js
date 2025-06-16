@@ -141,6 +141,16 @@ const AfterTaxReinvestmentRateLabel = document.getElementById(
 
 formInputs.addEventListener("submit", function (e) {
   e.preventDefault();
+  
+  // Get all input values from the form
+  const formInputValues = getInputsFromForm();
+  
+  // For debugging
+  console.log("Form input values collected:", formInputValues);
+  console.log("Monthly rent value:", formInputValues.monthlyRent);
+  
+  // Populate the table with these values
+  populateTable(formInputValues);
 });
 
 yearsSliderRange.addEventListener("input", () => {
@@ -245,142 +255,6 @@ btnExportPDF.addEventListener("click", function () {
   }
 });
 
-// table
-// table
-// table
-// Rent vs Sell Calculator – Improved Version (Rounded Whole Dollars)
-
-// const toPct = (p) => (p > 1 ? p / 100 : p);
-// const round0 = (x) => Math.round(x);
-
-// function simulate(inputs) {
-//   // Normalize percent values
-//   [
-//     "interestRate",
-//     "propertyTaxRate",
-//     "appreciationRate",
-//     "vacancyRate",
-//     "annualMaintenancePct",
-//     "capexPct",
-//     "rentChangePct",
-//     "propertyMgmtPct",
-//     "realtorCommissionPct",
-//     "closingCostPct",
-//     "incomeTaxRate",
-//     "capGainTaxRate",
-//     "reinvestRate",
-//   ].forEach((k) => (inputs[k] = toPct(inputs[k])));
-
-//   const results = [];
-//   let balance = inputs.mortgageBalance;
-//   let cumCash = 0;
-
-//   for (let n = 1; n <= inputs.yearsToHold; n++) {
-//     const rentGrossMonthly =
-//       inputs.monthlyRent * (1 + inputs.rentChangePct) ** (n - 1);
-//     const grossRent = rentGrossMonthly * 12;
-//     const collectedRent = grossRent * (1 - inputs.vacancyRate);
-
-//     const mortgage = inputs.monthlyPayment * 12;
-//     let principalPaid;
-//     if (n === 1) {
-//       principalPaid = 25084; // approximated from real amortization (Year 1)
-//     } else {
-//       principalPaid = 26500; // slightly growing as per amortization
-//     }
-//     balance -= principalPaid;
-
-//     const houseValue =
-//       inputs.homeValue * (1 + inputs.appreciationRate) ** (n - 1);
-//     const equity = houseValue - balance;
-
-//     const propertyTax = houseValue * inputs.propertyTaxRate;
-//     const insurance = inputs.insurancePerMonth * 12;
-//     const mgmt = collectedRent * inputs.propertyMgmtPct;
-//     const maintenance = collectedRent * inputs.annualMaintenancePct;
-//     const capex = collectedRent * inputs.capexPct;
-//     const makeReady = n === 1 ? inputs.makeReadyCost : 0;
-
-//     const otherCosts =
-//       propertyTax + insurance + mgmt + maintenance + capex + makeReady;
-
-//     const preTaxCashFlow = collectedRent - mortgage - otherCosts;
-//     const afterTaxCashFlow =
-//       preTaxCashFlow > 0
-//         ? preTaxCashFlow * (1 - inputs.incomeTaxRate)
-//         : preTaxCashFlow;
-
-//     cumCash += afterTaxCashFlow;
-
-//     const wealthRent = equity + cumCash;
-
-//     const saleNet =
-//       houseValue * (1 - inputs.realtorCommissionPct - inputs.closingCostPct);
-//     const capGainTax = inputs.isPrimary
-//       ? 0
-//       : Math.max(houseValue - inputs.pricePaid, 0) * inputs.capGainTaxRate;
-//     const afterTaxSale = saleNet - capGainTax - balance;
-//     const wealthSell =
-//       afterTaxSale * (1 + inputs.reinvestRate) ** (inputs.yearsToHold - n);
-
-//     const diff = wealthRent - wealthSell;
-
-//     results.push({
-//       year: n,
-//       rentalIncome: round0(collectedRent),
-//       mortgage: -round0(mortgage),
-//       otherCosts: -round0(otherCosts),
-//       netCashFlow: round0(afterTaxCashFlow),
-//       houseValue: round0(houseValue),
-//       houseEquity: round0(equity),
-//       wealthRent: round0(wealthRent),
-//       wealthSell: round0(wealthSell),
-//       diffRentVsSell: round0(diff),
-//     });
-//   }
-
-//   return results;
-// }
-
-// // Inputs based on your provided values
-// const inputs = {
-//   homeValue: +homeValueInput.value,
-//   pricePaid: +pricePaidInput.value,
-//   mortgageBalance: +mortgageBalanceInput.value,
-//   interestRate: +interestRateInput.value / 100,
-//   monthlyPayment: +mortgagePaymentInput.value,
-//   propertyTaxRate: +propertyTaxesInput.value / 100,
-//   insurancePerMonth: +homeownersInsuranceInput.value,
-//   monthlyRent: +monthlyRentInput.value,
-//   appreciationRate: +appreciationRateInput.value / 100,
-//   yearsToHold: +yearsToHoldRange.value,
-//   isPrimary: true,
-//   makeReadyCost: +MakeReadyCostsInput.value,
-//   annualMaintenancePct: +annualMaintenanceCostsRange.value / 100,
-//   propertyMgmtPct: 0.055, // fixed to 5.5% as per screenshot; can be dynamic later
-//   vacancyRate: +annualVacancyRateInput.value / 100,
-//   capexPct: +capitalExpendituresInput.value / 100,
-//   rentChangePct: +annualRentChangeInput.value / 100,
-//   realtorCommissionPct: +realtorCommissionInput.value / 100,
-//   closingCostPct: +closingCostsInputs.value / 100,
-//   incomeTaxRate: +incomeTaxRateInput.value / 100,
-//   capGainTaxRate: +capitalGainsTaxRateInput.value / 100,
-//   reinvestRate: +AfterTaxReinvestmentRateInput.value / 100,
-// };
-
-// // Run and view results
-// console.table(simulate(inputs));
-
-// table 2.0
-// table 2.0
-// table 2.0
-// table 2.0
-// table 2.0
-// table 2.0
-// table 2.0
-// table 2.0
-// table 2.0
-
 // Convert percent-like values to decimal (e.g. 6 → 0.06)
 function toPct(p) {
   return p >= 1 ? p / 100 : p;
@@ -391,8 +265,12 @@ function formatDollar(value) {
 }
 
 // Monthly rent in year n, applying annual growth
-function monthlyRent(n, { monthlyRent, rentChangePct }) {
-  return monthlyRent * (1 + rentChangePct) ** (n - 1); // no increase in year 1
+function monthlyRent(n, p) {
+  // Make the function more robust by checking for different property names
+  const growth = p.rentChangePct || p.rentGrowthPct || 0;
+  const baseRent = p.monthlyRent || p.MonthlyRent || 0; // Try different casing
+  
+  return baseRent * (1 + growth) ** (n - 1); // no increase in year 1
 }
 
 // Annual gross rent (before vacancy)
@@ -402,7 +280,9 @@ function grossRent(n, p) {
 
 // Annual collected rent (after vacancy rate)
 function collectedRent(n, p) {
-  return grossRent(n, p) * (1 - p.vacancyRate);
+  // Make vacancy rate property name more robust
+  const vacancyRate = p.vacancyRate || p.vacancyRatePct || 0;
+  return grossRent(n, p) * (1 - vacancyRate);
 }
 
 // Compute mortgage interest and principal over one year (12 payments)
@@ -420,47 +300,68 @@ function amortizeYear(balance, { interestRate, monthlyPayment }) {
   return { balance, interest, principal };
 }
 
-function otherCosts(n, p, houseVal) {
-  const insurance = p.insurancePerMonth * 12;
+function  otherCosts(n, p, houseVal) {
+  // Make sure all values are numbers and provide defaults to prevent NaN
+  const insurance = (p.insurancePerMonth || 0) * 12;
+  
+  // Property tax rate (use either propertyTaxRate or calculate from annualPropertyTaxes)
+  const propertyTaxRate = p.propertyTaxRate || 
+    ((p.annualPropertyTaxes && p.homeValue) ? p.annualPropertyTaxes / p.homeValue : 0.012);
+  
   // Property tax should be based on original home value, not current appreciated value
-  const propertyTax = p.homeValue * p.propertyTaxRate;
-  // Property management appears to be fixed $137/month based on form
-  const mgmt = 137 * 12;
-  const maintenance = collectedRent(n, p) * p.annualMaintenancePct;
-  // CapEx is unchecked, so set to 0
-  const capex = 0;
-
-  // Debug to see the exact difference needed each year
-  const baseTotal = insurance + propertyTax + mgmt + maintenance + capex;
-  if (n <= 3) {
-    console.log(
-      `Year ${n} - Base total: ${baseTotal}, Collected rent: ${collectedRent(
-        n,
-        p
-      )}`
-    );
+  const propertyTax = (p.homeValue || 0) * propertyTaxRate;
+  
+  // Property management fee - either percentage or fixed amount
+  let mgmt;
+  if (p.propertyMgmtPct && p.propertyMgmtPct > 0) {
+    // Use percentage of collected rent
+    mgmt = collectedRent(n, p) * p.propertyMgmtPct;
+  } else if (p.propertyManagementFee) {
+    // Use fixed monthly fee specified in form
+    mgmt = p.propertyManagementFee * 12;
+  } else {
+    // Default to industry standard of $100/month
+    mgmt = 100 * 12;
   }
+  
+  // Maintenance as percentage of collected rent
+  const maintenance = collectedRent(n, p) * (p.annualMaintenancePct || 0.01);
+  
+  // CapEx - default to 0 if not provided
+  const capex = collectedRent(n, p) * (p.capexPct || 0);
+  
+  // Make-ready costs (only in year 1)
+  const makeReady = n === 1 ? (p.makeReadyCost || 0) : 0;
 
-  // Debug the exact values
+  // Calculate total costs
+  const total = insurance + propertyTax + mgmt + maintenance + capex + makeReady;
+
+  // Only log minimal debugging info for the first year
   if (n === 1) {
-    console.log("Other Costs Breakdown Year 1:");
-    console.log("Insurance:", insurance);
-    console.log("Property Tax:", propertyTax);
-    console.log("Management:", mgmt);
-    console.log("Maintenance:", maintenance);
-    console.log("CapEx:", capex);
-    console.log("Total:", insurance + propertyTax + mgmt + maintenance + capex);
-    console.log("Target total: 11148");
+    console.log("Other Costs Year 1:", Math.round(total));
   }
 
   return {
-    total: baseTotal + 648, // Temporarily add fixed amount to see pattern
-    breakdown: { insurance, propertyTax, mgmt, maintenance, capex },
+    total,
+    breakdown: { insurance, propertyTax, mgmt, maintenance, capex, makeReady },
   };
 }
 
 // Main simulator: calculates rent vs sell logic over years
 function simulate(inputs) {
+  // Create a normalized copy of inputs to avoid naming convention issues
+  const normalizedInputs = { ...inputs };
+  
+  // Handle different naming conventions
+  normalizedInputs.rentChangePct = inputs.rentChangePct || inputs.rentGrowthPct || 0;
+  normalizedInputs.vacancyRate = inputs.vacancyRate || inputs.vacancyRatePct || 0;
+  normalizedInputs.propertyTaxRate = inputs.propertyTaxRate || (inputs.annualPropertyTaxes / inputs.homeValue) || 0;
+  normalizedInputs.appreciationRate = inputs.appreciationRate || inputs.appreciationRatePct || 0;
+  normalizedInputs.isPrimary = inputs.isPrimary || inputs.primaryResidence || false;
+  normalizedInputs.incomeTaxRate = inputs.incomeTaxRate || inputs.incomeTaxPct || 0;
+  normalizedInputs.capGainTaxRate = inputs.capGainTaxRate || inputs.capGainTaxPct || 0;
+  normalizedInputs.reinvestRate = inputs.reinvestRate || inputs.reinvestRatePct || 0;
+  
   // Convert percentage-style inputs to decimal if needed
   [
     "propertyTaxRate",
@@ -475,21 +376,42 @@ function simulate(inputs) {
     "incomeTaxRate",
     "capGainTaxRate",
     "reinvestRate",
-  ].forEach((k) => (inputs[k] = toPct(inputs[k])));
+  ].forEach((k) => {
+    if (normalizedInputs[k] !== undefined) {
+      normalizedInputs[k] = toPct(normalizedInputs[k]);
+    }
+  });
 
-  const yrs = inputs.yearsToHold;
-  let bal = inputs.mortgageBalance;
-  let cumCF = -inputs.makeReadyCost; // Deduct make-ready at start
+  const yrs = normalizedInputs.yearsToHold || inputs.yearsToHold;
+  let bal = normalizedInputs.mortgageBalance || inputs.mortgageBalance;
+  let cumCF = -(normalizedInputs.makeReadyCost || inputs.makeReadyCost || 0); // Deduct make-ready at start
   const rows = [];
 
   for (let n = 1; n <= yrs; n++) {
-    const rent = collectedRent(n, inputs);
-    const { balance, principal, interest } = amortizeYear(bal, inputs);
-    const mortgagePay = inputs.monthlyPayment * 12;
+    // Use normalized inputs for all calculations to prevent NaN values
+    const rent = collectedRent(n, normalizedInputs);
+    
+    // Make sure interestRate is defined before calling amortizeYear
+    if (normalizedInputs.interestRate === undefined && inputs.interestRatePct !== undefined) {
+      normalizedInputs.interestRate = toPct(inputs.interestRatePct);
+    }
+    
+    // Ensure monthlyPayment is defined
+    normalizedInputs.monthlyPayment = normalizedInputs.monthlyPayment || inputs.monthlyPayment;
+    
+    const { balance, principal, interest } = amortizeYear(bal, normalizedInputs);
+    const mortgagePay = normalizedInputs.monthlyPayment * 12;
     bal = balance;
-    const houseVal =
-      inputs.homeValue * (1 + inputs.appreciationRate) ** (n - 1);
-    const { total: oCost } = otherCosts(n, inputs, houseVal);
+    
+    const homeValue = normalizedInputs.homeValue || inputs.homeValue;
+    const appreciationRate = normalizedInputs.appreciationRate || 0;
+    const houseVal = homeValue * (1 + appreciationRate) ** (n - 1);
+    
+    // Make sure these properties exist for otherCosts
+    normalizedInputs.insurancePerMonth = normalizedInputs.insurancePerMonth || 
+      (inputs.annualInsurance ? inputs.annualInsurance / 12 : inputs.insurancePerMonth);
+    
+    const { total: oCost } = otherCosts(n, normalizedInputs, houseVal);
 
     const preTaxCF = rent - mortgagePay - oCost;
 
@@ -497,40 +419,29 @@ function simulate(inputs) {
     const taxableIncome = rent - interest - oCost;
 
     // Calculate tax on taxable income only
-    const tax = taxableIncome > 0 ? taxableIncome * inputs.incomeTaxRate : 0;
+    const tax = taxableIncome > 0 ? taxableIncome * normalizedInputs.incomeTaxRate : 0;
 
     // After-tax cash flow = pre-tax cash flow minus tax
     const afterTaxCF = preTaxCF - tax;
-
-    // Debug for year 1
-    if (n === 1) {
-      console.log("=== YEAR 1 CASH FLOW BREAKDOWN ===");
-      console.log("Rental Income:", rent);
-      console.log("Mortgage Payment (total):", mortgagePay);
-      console.log("Mortgage Interest:", interest);
-      console.log("Mortgage Principal:", principal);
-      console.log("Other Costs:", oCost);
-      console.log("Pre-tax Cash Flow:", preTaxCF);
-      console.log("Taxable Income:", taxableIncome);
-      console.log("Tax:", tax);
-      console.log("After-tax Cash Flow:", afterTaxCF);
-      console.log("Target After-tax Cash Flow: -$185");
-      console.log("Missing amount:", -185 - afterTaxCF);
-    }
 
     cumCF += afterTaxCF;
 
     const equity = houseVal - bal;
     const wealthRent = equity + cumCF;
 
+    // Make sure these values exist
+    normalizedInputs.realtorCommissionPct = normalizedInputs.realtorCommissionPct || inputs.realtorCommissionPct || 0;
+    normalizedInputs.closingCostPct = normalizedInputs.closingCostPct || inputs.closingCostPct || 0;
+    normalizedInputs.pricePaid = normalizedInputs.pricePaid || inputs.pricePaid || homeValue;
+    
     const saleNet =
-      houseVal * (1 - inputs.realtorCommissionPct - inputs.closingCostPct);
-    const capGainTax = inputs.isPrimary
+      houseVal * (1 - normalizedInputs.realtorCommissionPct - normalizedInputs.closingCostPct);
+    const capGainTax = normalizedInputs.isPrimary
       ? 0
-      : Math.max(houseVal - inputs.pricePaid, 0) * inputs.capGainTaxRate;
+      : Math.max(houseVal - normalizedInputs.pricePaid, 0) * normalizedInputs.capGainTaxRate;
     const afterTaxSale = saleNet - capGainTax - bal;
     const yrsToGrow = yrs - n;
-    const wealthSell = afterTaxSale * (1 + inputs.reinvestRate) ** yrsToGrow;
+    const wealthSell = afterTaxSale * (1 + normalizedInputs.reinvestRate) ** yrsToGrow;
 
     rows.push({
       Year: n,
@@ -549,88 +460,198 @@ function simulate(inputs) {
   console.table(rows);
   return rows;
 }
+
 // Example input
 const inputs = {
   homeValue: 450000,
   pricePaid: 300000,
+  originalMortgage: 250000,
   mortgageBalance: 200000,
-  interestRate: 0.05,
+  interestRate: 0.05, // % — will be converted
   monthlyPayment: 1342.05,
-  propertyTaxRate: 1.6, // % — will be converted
+  propertyTaxRate: 0.016, // % — will be converted
   insurancePerMonth: 115,
-  monthlyRent: 2500,
-  appreciationRate: 3.5, // %
+  monthlyRent: 25000,
+  appreciationRate: 0.035, // %
   yearsToHold: 10,
   isPrimary: true,
   makeReadyCost: 3000,
-  annualMaintenancePct: 1, // %
-  propertyMgmtPct: 5.5, // %
-  vacancyRate: 8, // %
-  capexPct: 5, // %
-  rentChangePct: 3, // %
-  realtorCommissionPct: 6,
-  closingCostPct: 3,
-  incomeTaxRate: 10,
-  capGainTaxRate: 15,
-  reinvestRate: 6,
+  annualMaintenancePct: 0.01, // %
+  refurbishingCostPct: 0.01, // %
+  mortgageTerm: 30, // Years
+  propertyMgmtPct: 137,
+  vacancyRate: 0.08, // %
+  capexPct: 0.05, // %
+  rentChangePct: 0.03, // %
+  realtorCommissionPct: 0.06,
+  closingCostPct: 0.03,
+  incomeTaxRate: 0.1,
+  capGainTaxRate: 0.15,
+  reinvestRate: 0.06,
 };
 
 // Run the simulation and show the table
 simulate(inputs);
 
 function populateTable(inputs) {
-  // Call your simulate function to get the data
-  const results = simulate(inputs);
+  try {
+    // Validate critical inputs
+    if (!inputs.monthlyRent || isNaN(inputs.monthlyRent)) {
+      console.error('Monthly rent is missing or invalid:', inputs.monthlyRent);
+      alert('Please enter a valid Monthly Rent amount');
+      return;
+    }
+    
+    if (!inputs.homeValue || isNaN(inputs.homeValue)) {
+      console.error('Home value is missing or invalid:', inputs.homeValue);
+      alert('Please enter a valid Home Value');
+      return;
+    }
 
-  // Get the table body element
-  const tbody = document.querySelector("table tbody");
+    // Call your simulate function to get the data
+    const results = simulate(inputs);
+    
+    // Get the table body element
+    const tbody = document.querySelector("table tbody");
+    if (!tbody) {
+      console.error('Table body not found in the DOM');
+      return;
+    }
 
-  // Clear existing rows (except example row if you want to keep it)
-  tbody.innerHTML = "";
+    // Clear existing rows
+    tbody.innerHTML = "";
 
-  // Populate the table with results
-  results.forEach((row) => {
-    const tr = document.createElement("tr");
+    // Populate the table with results
+    results.forEach((row) => {
+      const tr = document.createElement("tr");
 
-    tr.innerHTML = `
-      <td>${row.Year}</td>
-      <td>${row["Rental Income"]}</td>
-      <td>${row.Mortgage}</td>
-      <td>${row["Other Costs"]}</td>
-      <td>${row["Net Cash Flow"]}</td>
-      <td>${row["House Value"]}</td>
-      <td>${row["House Equity"]}</td>
-      <td>${row["Wealth (Rent)"]}</td>
-      <td>${row["Wealth (Sell)"]}</td>
-      <td>${row.Difference}</td>
-    `;
+      tr.innerHTML = `
+        <td>${row.Year}</td>
+        <td>${row["Rental Income"]}</td>
+        <td>${row.Mortgage}</td>
+        <td>${row["Other Costs"]}</td>
+        <td>${row["Net Cash Flow"]}</td>
+        <td>${row["House Value"]}</td>
+        <td>${row["House Equity"]}</td>
+        <td>${row["Wealth (Rent)"]}</td>
+        <td>${row["Wealth (Sell)"]}</td>
+        <td>${row.Difference}</td>
+      `;
 
-    tbody.appendChild(tr);
-  });
+      tbody.appendChild(tr);
+    });
+    
+    // Update summary fields if they exist
+    const lastRow = results[results.length - 1];
+    if (lastRow) {
+      if (summary_rent_out) summary_rent_out.textContent = lastRow["Wealth (Rent)"];
+      if (summary_sell_out) summary_sell_out.textContent = lastRow["Wealth (Sell)"];
+      if (summary_dif_wealth) summary_dif_wealth.textContent = lastRow.Difference;
+    }
+  } catch (error) {
+    console.error('Error populating table:', error);
+    alert('An error occurred while calculating. Please check your inputs.');
+  }
 }
 
-// Example usage:
-// Assuming you have an inputs object with all required properties
+// Example usage with all required properties
 const inputs2 = {
-  // Your input values here
-  yearsToHold: 10,
-  mortgageBalance: 224838,
-  makeReadyCost: 5000,
-  monthlyPayment: 1342,
+  // Basic property info
   homeValue: 450000,
-  // ... all other required properties
+  pricePaid: 400000,
+  mortgageBalance: 224838,
+  interestRate: 0.05,
+  monthlyPayment: 1342,
+  
+  // Rental properties
+  monthlyRent: 2500,  // Added this critical property for rental calculation
+  rentChangePct: 0.03,
+  vacancyRate: 0.08,
+  
+  // Expenses and costs
+  makeReadyCost: 5000,
+  propertyTaxRate: 0.016,
+  insurancePerMonth: 115,
+  annualMaintenancePct: 0.01,
+  propertyMgmtPct: 0.055,
+  capexPct: 0.05,
+  
+  // Sale-related
+  appreciationRate: 0.035,
+  yearsToHold: 10,
+  isPrimary: true,
+  realtorCommissionPct: 0.06,
+  closingCostPct: 0.03,
+  
+  // Tax and investment
+  incomeTaxRate: 0.25,
+  capGainTaxRate: 0.15,
+  reinvestRate: 0.06
 };
 
-// Call the function to populate the table
+// Add a calculate button event listener
+document.getElementById('calculateBtn')?.addEventListener('click', function() {
+  // Get all input values from the form
+  const formInputValues = getInputsFromForm();
+  
+  // Populate the table with these values
+  populateTable(formInputValues);
+});
+
+// Initialize with sample data to ensure the table has values on page load
 populateTable(inputs2);
 
-// Helper function to get inputs from form (example)
+// Optionally add an event listener to update the calculations when the form is changed
+// This will make the calculator more interactive
+const formInputElements = document.querySelectorAll('#formInputs input, #formInputs select');
+formInputElements.forEach(element => {
+  element.addEventListener('change', function() {
+    // Only auto-recalculate if the checkbox for that feature is enabled
+    const autoCalculate = document.getElementById('autoCalculate');
+    if (autoCalculate && autoCalculate.checked) {
+      const formInputValues = getInputsFromForm();
+      populateTable(formInputValues);
+    }
+  });
+});
+
+// Helper function to get all inputs from form
 function getInputsFromForm() {
+  // Property information
+  const homeValue = parseFloat(homeValueInput.value) || 0;
+  
   return {
-    yearsToHold: parseInt(document.getElementById("years").value),
-    mortgageBalance: parseFloat(document.getElementById("mortgage").value),
-    makeReadyCost: parseFloat(document.getElementById("makeReady").value),
-    // ... get all other form values
+    // Property information
+    homeValue: homeValue,
+    pricePaid: parseFloat(pricePaidInput.value) || homeValue, // Default to home value if not specified
+    mortgageBalance: parseFloat(mortgageBalanceInput.value) || 0,
+    interestRate: parseFloat(interestRateInput.value) / 100 || 0.05, // Convert from percentage
+    monthlyPayment: parseFloat(mortgagePaymentInput.value) || 0,
+    
+    // Rental properties
+    monthlyRent: parseFloat(monthlyRentInput.value) || 0,
+    rentChangePct: parseFloat(annualRentChangeInput.value) / 100 || 0,
+    vacancyRate: parseFloat(annualVacancyRateInput.value) / 100 || 0,
+    
+    // Expenses and costs
+    makeReadyCost: parseFloat(RefurbishingCostsSellInput.value) || 0,
+    propertyTaxRate: parseFloat(propertyTaxesInput.value) / 100 || 0,
+    insurancePerMonth: parseFloat(homeownersInsuranceInput.value) || 0,
+    annualMaintenancePct: parseFloat(annualMaintenanceCostsInput.value) / 100 || 0.01,
+    propertyMgmtPct: parseFloat(propertyManagementFeeInput.value) / 100 || 0.055,
+    capexPct: parseFloat(capitalExpendituresInput.value) / 100 || 0,
+    
+    // Sale-related
+    appreciationRate: parseFloat(appreciationRateInput.value) / 100 || 0.03,
+    yearsToHold: parseInt(yearsToHoldRange.value) || 10,
+    isPrimary: primaryResidenceCheckbox ? primaryResidenceCheckbox.checked : true,
+    realtorCommissionPct: parseFloat(realtorCommissionInput.value) / 100 || 0.06,
+    closingCostPct: parseFloat(closingCostsInputs.value) / 100 || 0.03,
+    
+    // Tax and investment
+    incomeTaxRate: parseFloat(incomeTaxRateInput.value) / 100 || 0.25,
+    capGainTaxRate: parseFloat(capitalGainsTaxRateInput.value) / 100 || 0.15,
+    reinvestRate: parseFloat(AfterTaxReinvestmentRateInput.value) / 100 || 0.06
   };
 }
 
